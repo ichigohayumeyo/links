@@ -329,12 +329,19 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
             padding: 2rem 0;
             max-width: 1000px;
             margin: 0 auto;
             align-items: start;
+        }
+        
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
         }
 
         .photo-item {
@@ -350,14 +357,21 @@
             aspect-ratio: 1;
         }
 
-        .photo-item:nth-child(1) { transform: rotate(-28deg); }
-        .photo-item:nth-child(2) { transform: rotate(25deg); }
-        .photo-item:nth-child(3) { transform: rotate(-20deg); }
-        .photo-item:nth-child(4) { 
-            transform: rotate(30deg) translateY(-60px);
+        .photo-item:nth-child(1) { transform: rotate(-12deg); }
+        .photo-item:nth-child(2) { transform: rotate(10deg); }
+        .photo-item:nth-child(3) { transform: rotate(-8deg); }
+        .photo-item:nth-child(4) { transform: rotate(12deg); }
+        .photo-item:nth-child(5) { transform: rotate(-10deg); }
+        .photo-item:nth-child(6) { transform: rotate(8deg); }
+        
+        @media (max-width: 768px) {
+            .photo-item:nth-child(1) { transform: rotate(-5deg); }
+            .photo-item:nth-child(2) { transform: rotate(5deg); }
+            .photo-item:nth-child(3) { transform: rotate(-3deg); }
+            .photo-item:nth-child(4) { transform: rotate(6deg); }
+            .photo-item:nth-child(5) { transform: rotate(-4deg); }
+            .photo-item:nth-child(6) { transform: rotate(3deg); }
         }
-        .photo-item:nth-child(5) { transform: rotate(-30deg); }
-        .photo-item:nth-child(6) { transform: rotate(22deg); }
 
         .photo-item:hover {
             transform: scale(1.1) rotate(0deg);
@@ -449,16 +463,23 @@
             .hero h1 { font-size: 2.5rem; }
             .social-links { flex-direction: column; align-items: center; gap: 1rem; }
             .social-link { width: 85%; max-width: 320px; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .gallery-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 1rem;
+                max-width: 600px;
+            }
             .videos-grid { grid-template-columns: 1fr; }
             .video-container iframe { height: 200px; }
             .video-container.vertical iframe { height: 300px; }
         }
-
+        
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .profile-image { width: 120px; height: 120px; }
-            .gallery-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .gallery-grid { 
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
             .video-container iframe { height: 180px; }
             .video-container.vertical iframe { height: 250px; }
         }
