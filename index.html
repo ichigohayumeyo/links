@@ -357,32 +357,22 @@
             aspect-ratio: 1;
         }
 
-        /* デスクトップ：控えめな傾き */
-        .photo-item:nth-child(1) { transform: rotate(-3deg); }
-        .photo-item:nth-child(2) { transform: rotate(2deg); }
-        .photo-item:nth-child(3) { transform: rotate(-2deg); }
-        .photo-item:nth-child(4) { transform: rotate(3deg); }
-        .photo-item:nth-child(5) { transform: rotate(-2deg); }
-        .photo-item:nth-child(6) { transform: rotate(2deg); }
+        /* デスクトップ：回転と上下移動を維持 */
+        .photo-item:nth-child(1) { transform: rotate(-28deg); }
+        .photo-item:nth-child(2) { transform: rotate(25deg); }
+        .photo-item:nth-child(3) { transform: rotate(-20deg); }
+        .photo-item:nth-child(4) { transform: rotate(30deg) translateY(-60px); }
+        .photo-item:nth-child(5) { transform: rotate(-30deg); }
+        .photo-item:nth-child(6) { transform: rotate(22deg); }
         
-        /* タブレット以下：さらに控えめ */
+        /* モバイル：回転は維持、上下移動をなくす */
         @media (max-width: 768px) {
-            .photo-item:nth-child(1) { transform: rotate(-1deg); }
-            .photo-item:nth-child(2) { transform: rotate(1deg); }
-            .photo-item:nth-child(3) { transform: rotate(-1deg); }
-            .photo-item:nth-child(4) { transform: rotate(1deg); }
-            .photo-item:nth-child(5) { transform: rotate(-1deg); }
-            .photo-item:nth-child(6) { transform: rotate(1deg); }
-        }
-        
-        /* 小さいスマホ：ほぼ水平 */
-        @media (max-width: 480px) {
-            .photo-item:nth-child(1) { transform: rotate(-0.5deg); }
-            .photo-item:nth-child(2) { transform: rotate(0.5deg); }
-            .photo-item:nth-child(3) { transform: rotate(-0.5deg); }
-            .photo-item:nth-child(4) { transform: rotate(0.5deg); }
-            .photo-item:nth-child(5) { transform: rotate(-0.5deg); }
-            .photo-item:nth-child(6) { transform: rotate(0.5deg); }
+            .photo-item:nth-child(1) { transform: rotate(-28deg) translateY(0); }
+            .photo-item:nth-child(2) { transform: rotate(25deg) translateY(0); }
+            .photo-item:nth-child(3) { transform: rotate(-20deg) translateY(0); }
+            .photo-item:nth-child(4) { transform: rotate(30deg) translateY(0); }
+            .photo-item:nth-child(5) { transform: rotate(-30deg) translateY(0); }
+            .photo-item:nth-child(6) { transform: rotate(22deg) translateY(0); }
         }
 
         .photo-item:hover {
