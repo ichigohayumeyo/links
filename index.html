@@ -26,7 +26,20 @@
             position: relative;
         }
 
+        /* ベース背景 */
         body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, #0f0f0f 0%, #0a0a0a 100%);
+            z-index: -5;
+        }
+
+        /* 静かな水面のような背景グラデーション */
+        body::after {
             content: '';
             position: fixed;
             top: -50%;
@@ -34,46 +47,405 @@
             width: 200%;
             height: 200%;
             background: 
-                radial-gradient(ellipse at 30% 20%, transparent 0%, transparent 40%, rgba(147, 112, 219, 0.25) 41%, transparent 42%),
-                radial-gradient(ellipse at 70% 40%, transparent 0%, transparent 50%, rgba(72, 209, 204, 0.08) 51%, transparent 52%),
-                radial-gradient(ellipse at 40% 60%, transparent 0%, transparent 45%, rgba(147, 112, 219, 0.12) 46%, transparent 47%),
-                radial-gradient(ellipse at 60% 80%, transparent 0%, transparent 55%, rgba(72, 209, 204, 0.18) 56%, transparent 57%),
-                radial-gradient(ellipse at 20% 50%, transparent 0%, transparent 35%, rgba(147, 112, 219, 0.06) 36%, transparent 37%),
-                radial-gradient(ellipse at 80% 70%, transparent 0%, transparent 45%, rgba(72, 209, 204, 0.22) 46%, transparent 47%),
-                radial-gradient(ellipse at 50% 30%, transparent 0%, transparent 38%, rgba(147, 112, 219, 0.15) 39%, transparent 40%);
-            z-index: -3;
-            animation: spiralFlow 40s linear infinite, spiralPulse 8s ease-in-out infinite;
+                radial-gradient(ellipse 1000px 700px at 25% 35%, rgba(147, 112, 219, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 900px 600px at 75% 65%, rgba(72, 209, 204, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 800px 900px at 50% 50%, rgba(147, 112, 219, 0.05) 0%, transparent 50%);
+            animation: gentleWater 30s ease-in-out infinite;
+            z-index: -4;
         }
 
-        body::after {
-            content: '';
+        @keyframes gentleWater {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: translate(-2%, 2%) scale(1.02);
+                opacity: 0.6;
+            }
+        }
+
+        /* しとしと降る雨 */
+        .rain-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: transparent;
+            pointer-events: none;
+            z-index: -3;
+            overflow: hidden;
+        }
+
+        .rain-drop {
+            position: absolute;
+            background: linear-gradient(180deg, transparent, rgba(147, 112, 219, 0.4), rgba(147, 112, 219, 0.5), transparent);
+            animation: gentleRain 4s linear infinite;
+            opacity: 0;
+        }
+
+        /* 紫と緑を交互に、明暗を調整 */
+        .rain-drop:nth-child(2n) {
+            background: linear-gradient(180deg, transparent, rgba(72, 209, 204, 0.35), rgba(72, 209, 204, 0.45), transparent);
+        }
+
+        /* より暗い雨粒 */
+        .rain-drop:nth-child(3n) {
+            background: linear-gradient(180deg, transparent, rgba(147, 112, 219, 0.25), rgba(147, 112, 219, 0.3), transparent);
+        }
+
+        .rain-drop:nth-child(5n) {
+            background: linear-gradient(180deg, transparent, rgba(72, 209, 204, 0.2), rgba(72, 209, 204, 0.25), transparent);
+        }
+
+        /* 各雨粒のサイズ、位置、タイミングを個別調整 - バリエーション豊富に */
+        .rain-drop:nth-child(1) { width: 1px; height: 35px; left: 5%; animation-delay: 0s; animation-duration: 4.2s; }
+        .rain-drop:nth-child(2) { width: 2.5px; height: 45px; left: 12%; animation-delay: 0.8s; animation-duration: 4.8s; }
+        .rain-drop:nth-child(3) { width: 0.8px; height: 18px; left: 18%; animation-delay: 1.5s; animation-duration: 4.5s; }
+        .rain-drop:nth-child(4) { width: 1.2px; height: 40px; left: 25%; animation-delay: 2.3s; animation-duration: 4.3s; }
+        .rain-drop:nth-child(5) { width: 3px; height: 32px; left: 32%; animation-delay: 0.5s; animation-duration: 4.6s; }
+        .rain-drop:nth-child(6) { width: 1.3px; height: 22px; left: 38%; animation-delay: 1.8s; animation-duration: 4.1s; }
+        .rain-drop:nth-child(7) { width: 0.9px; height: 30px; left: 45%; animation-delay: 1.2s; animation-duration: 4.7s; }
+        .rain-drop:nth-child(8) { width: 2px; height: 48px; left: 52%; animation-delay: 2.8s; animation-duration: 4.4s; }
+        .rain-drop:nth-child(9) { width: 1.1px; height: 25px; left: 58%; animation-delay: 0.9s; animation-duration: 4.5s; }
+        .rain-drop:nth-child(10) { width: 1px; height: 33px; left: 65%; animation-delay: 1.6s; animation-duration: 4.2s; }
+        .rain-drop:nth-child(11) { width: 2.8px; height: 46px; left: 72%; animation-delay: 2.5s; animation-duration: 4.9s; }
+        .rain-drop:nth-child(12) { width: 0.8px; height: 16px; left: 78%; animation-delay: 1.3s; animation-duration: 4.3s; }
+        .rain-drop:nth-child(13) { width: 1.8px; height: 41px; left: 85%; animation-delay: 2.1s; animation-duration: 4.6s; }
+        .rain-drop:nth-child(14) { width: 1px; height: 20px; left: 92%; animation-delay: 0.3s; animation-duration: 4.4s; }
+        .rain-drop:nth-child(15) { width: 2.2px; height: 43px; left: 8%; animation-delay: 3.2s; animation-duration: 4.8s; }
+        .rain-drop:nth-child(16) { width: 0.9px; height: 29px; left: 15%; animation-delay: 3.8s; animation-duration: 4.5s; }
+        .rain-drop:nth-child(17) { width: 1.4px; height: 24px; left: 22%; animation-delay: 0.7s; animation-duration: 4.7s; }
+        .rain-drop:nth-child(18) { width: 2.6px; height: 37px; left: 28%; animation-delay: 3.0s; animation-duration: 4.3s; }
+        .rain-drop:nth-child(19) { width: 1px; height: 19px; left: 35%; animation-delay: 1.4s; animation-duration: 4.6s; }
+        .rain-drop:nth-child(20) { width: 3.2px; height: 50px; left: 42%; animation-delay: 3.5s; animation-duration: 5.0s; }
+
+        @keyframes gentleRain {
+            0% {
+                top: -60px;
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.6;
+            }
+            95% {
+                opacity: 0.4;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* 穏やかな水面の波紋 */
+        .ripples-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: -2;
         }
 
-        @keyframes spiralFlow {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(360deg) scale(1.1); }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 0.5px solid;
+            animation: gentleRipple 5s ease-out infinite;
+            opacity: 0;
         }
 
-        @keyframes spiralPulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
+        /* 実線・標準速度・標準透明度 */
+        .ripple:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            top: 22%;
+            left: 18%;
+            border-color: rgba(147, 112, 219, 0.32);
+            animation-delay: 1.2s;
+            animation-duration: 5s;
         }
 
-        @keyframes spiralFlow {
-            0% { transform: rotate(0deg) scale(1); opacity: 0.6; }
-            100% { transform: rotate(360deg) scale(1.1); opacity: 0.6; }
+        /* 実線・速め・濃い */
+        .ripple:nth-child(2) {
+            width: 45px;
+            height: 45px;
+            top: 58%;
+            left: 75%;
+            border-color: rgba(72, 209, 204, 0.38);
+            animation-delay: 2.5s;
+            animation-duration: 4s;
         }
 
-        @keyframes spiralRotate {
-            0% { transform: rotate(0deg); opacity: 0.4; }
-            100% { transform: rotate(360deg); opacity: 0.4; }
+        /* 実線・ゆっくり・薄い */
+        .ripple:nth-child(3) {
+            width: 38px;
+            height: 38px;
+            top: 35%;
+            left: 65%;
+            border-color: rgba(147, 112, 219, 0.22);
+            animation-delay: 4.0s;
+            animation-duration: 6.5s;
+        }
+
+        /* 実線・速め・標準透明度 */
+        .ripple:nth-child(4) {
+            width: 42px;
+            height: 42px;
+            top: 72%;
+            left: 25%;
+            border-color: rgba(72, 209, 204, 0.3);
+            animation-delay: 0.8s;
+            animation-duration: 4.2s;
+        }
+
+        /* 実線・ゆっくり・濃い */
+        .ripple:nth-child(5) {
+            width: 36px;
+            height: 36px;
+            top: 15%;
+            left: 55%;
+            border-color: rgba(147, 112, 219, 0.35);
+            animation-delay: 3.2s;
+            animation-duration: 6s;
+        }
+
+        @keyframes gentleRipple {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(6);
+                opacity: 0;
+            }
+        }
+
+        /* アジサイのあしらい */
+        .hydrangea-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.2;
+        }
+
+        .hydrangea {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+        }
+
+        .hydrangea-flower {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(147, 112, 219, 0.7);
+            box-shadow: 0 0 4px rgba(147, 112, 219, 0.4);
+        }
+
+        /* 4枚の花びらで1つの花を作る */
+        .hydrangea-flower::before,
+        .hydrangea-flower::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(147, 112, 219, 0.7);
+        }
+
+        .hydrangea-flower::before {
+            top: -6px;
+            left: 6px;
+        }
+
+        .hydrangea-flower::after {
+            top: 6px;
+            left: -6px;
+        }
+
+        /* 葉のあしらい */
+        .hydrangea-leaf {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: rgba(72, 209, 204, 0.15);
+            border-radius: 50% 0;
+            transform: rotate(-45deg);
+        }
+
+        /* 各アジサイの配置 */
+        .hydrangea:nth-child(1) {
+            top: 10%;
+            right: 8%;
+            transform: rotate(15deg);
+            animation: gentleSway 8s ease-in-out infinite;
+        }
+
+        .hydrangea:nth-child(1) .hydrangea-leaf:nth-of-type(1) {
+            top: 60px;
+            left: 5px;
+        }
+
+        .hydrangea:nth-child(1) .hydrangea-leaf:nth-of-type(2) {
+            top: 55px;
+            left: 40px;
+            transform: rotate(20deg);
+        }
+
+        .hydrangea:nth-child(2) {
+            top: 45%;
+            left: 5%;
+            transform: rotate(-20deg);
+            animation: gentleSway 9s ease-in-out infinite 2s;
+        }
+
+        .hydrangea:nth-child(2) .hydrangea-flower,
+        .hydrangea:nth-child(2) .hydrangea-flower::before,
+        .hydrangea:nth-child(2) .hydrangea-flower::after {
+            background: rgba(72, 209, 204, 0.7);
+            box-shadow: 0 0 4px rgba(72, 209, 204, 0.4);
+        }
+
+        .hydrangea:nth-child(2) .hydrangea-leaf:nth-of-type(1) {
+            top: 58px;
+            left: 10px;
+        }
+
+        .hydrangea:nth-child(2) .hydrangea-leaf:nth-of-type(2) {
+            top: 62px;
+            left: 45px;
+            transform: rotate(-30deg);
+        }
+
+        .hydrangea:nth-child(3) {
+            bottom: 15%;
+            right: 10%;
+            transform: rotate(25deg);
+            animation: gentleSway 10s ease-in-out infinite 4s;
+        }
+
+        .hydrangea:nth-child(3) .hydrangea-flower,
+        .hydrangea:nth-child(3) .hydrangea-flower::before,
+        .hydrangea:nth-child(3) .hydrangea-flower::after {
+            background: rgba(147, 112, 219, 0.6);
+            box-shadow: 0 0 4px rgba(147, 112, 219, 0.3);
+        }
+
+        .hydrangea:nth-child(3) .hydrangea-leaf:nth-of-type(1) {
+            top: 57px;
+            left: 8px;
+        }
+
+        .hydrangea:nth-child(3) .hydrangea-leaf:nth-of-type(2) {
+            top: 60px;
+            left: 42px;
+            transform: rotate(15deg);
+        }
+
+        @keyframes gentleSway {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            25% { transform: rotate(2deg) translateY(-3px); }
+            50% { transform: rotate(0deg) translateY(0); }
+            75% { transform: rotate(-2deg) translateY(-2px); }
+        }
+
+        /* 花の配置（球状に見えるように） */
+        .hydrangea .hydrangea-flower:nth-child(1) { top: 15px; left: 20px; }
+        .hydrangea .hydrangea-flower:nth-child(2) { top: 10px; left: 40px; }
+        .hydrangea .hydrangea-flower:nth-child(3) { top: 30px; left: 10px; }
+        .hydrangea .hydrangea-flower:nth-child(4) { top: 30px; left: 35px; }
+        .hydrangea .hydrangea-flower:nth-child(5) { top: 25px; left: 55px; }
+        .hydrangea .hydrangea-flower:nth-child(6) { top: 45px; left: 25px; }
+        .hydrangea .hydrangea-flower:nth-child(7) { top: 50px; left: 45px; }
+
+        /* モバイルではアジサイを非表示 */
+        @media (max-width: 768px) {
+            .hydrangea-decoration {
+                display: none;
+            }
+        }
+
+        /* 控えめな浮遊粒子 */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(147, 112, 219, 0.12) 0%, transparent 70%);
+            animation: subtleFloat 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 70px;
+            height: 70px;
+            top: 60%;
+            left: 85%;
+            background: radial-gradient(circle, rgba(72, 209, 204, 0.1) 0%, transparent 70%);
+            animation-duration: 20s;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(3) {
+            width: 55px;
+            height: 55px;
+            top: 40%;
+            left: 50%;
+            animation-duration: 19s;
+            animation-delay: 6s;
+        }
+
+        .particle:nth-child(4) {
+            width: 65px;
+            height: 65px;
+            top: 75%;
+            left: 25%;
+            background: radial-gradient(circle, rgba(72, 209, 204, 0.11) 0%, transparent 70%);
+            animation-duration: 21s;
+            animation-delay: 2s;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(15px, -20px) scale(1.05);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translate(-12px, -35px) scale(0.95);
+                opacity: 0.35;
+            }
+            75% {
+                transform: translate(18px, -25px) scale(1.02);
+                opacity: 0.38;
+            }
         }
 
         .container {
@@ -97,17 +469,27 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(ellipse at center, rgba(147, 112, 219, 0.15) 0%, rgba(72, 209, 204, 0.08) 30%, transparent 60%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, 
+                rgba(147, 112, 219, 0.15) 0%, 
+                rgba(72, 209, 204, 0.1) 40%, 
+                transparent 70%
+            );
             border-radius: 50%;
             z-index: -1;
-            animation: breathe 10s ease-in-out infinite;
+            animation: softPulse 5s ease-in-out infinite;
         }
 
-        @keyframes breathe {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.6; }
+        @keyframes softPulse {
+            0%, 100% { 
+                opacity: 0.4; 
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
 
         .profile-image-container {
@@ -123,23 +505,46 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(147, 112, 219, 0.8);
-            box-shadow: 0 0 30px rgba(147, 112, 219, 0.4), 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            border: 3px solid rgba(147, 112, 219, 0.6);
+            box-shadow: 
+                0 0 35px rgba(147, 112, 219, 0.5), 
+                0 0 60px rgba(72, 209, 204, 0.3),
+                0 8px 25px rgba(0, 0, 0, 0.6), 
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: softGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes softGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 35px rgba(147, 112, 219, 0.5), 
+                    0 0 60px rgba(72, 209, 204, 0.3),
+                    0 8px 25px rgba(0, 0, 0, 0.6);
+            }
+            50% {
+                box-shadow: 
+                    0 0 45px rgba(147, 112, 219, 0.6), 
+                    0 0 80px rgba(72, 209, 204, 0.4),
+                    0 12px 30px rgba(0, 0, 0, 0.7);
+            }
         }
 
         .profile-image:hover {
             transform: scale(1.08) rotate(3deg);
-            border-color: rgba(72, 209, 204, 0.9);
-            box-shadow: 0 0 40px rgba(72, 209, 204, 0.6), 0 12px 35px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.1);
+            border-color: rgba(72, 209, 204, 0.8);
+            box-shadow: 
+                0 0 50px rgba(72, 209, 204, 0.7), 
+                0 0 90px rgba(147, 112, 219, 0.5),
+                0 12px 35px rgba(0, 0, 0, 0.7);
         }
 
         .profile-icon-fallback {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 3px solid rgba(147, 112, 219, 0.8);
-            box-shadow: 0 0 30px rgba(147, 112, 219, 0.4), 0 8px 25px rgba(0, 0, 0, 0.6);
+            border: 3px solid rgba(147, 112, 219, 0.6);
+            box-shadow: 0 0 35px rgba(147, 112, 219, 0.5), 0 8px 25px rgba(0, 0, 0, 0.6);
             background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(72, 209, 204, 0.1));
             display: flex;
             align-items: center;
@@ -154,7 +559,10 @@
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(147, 112, 219, 0.4);
+            text-shadow: 
+                2px 2px 8px rgba(0, 0, 0, 0.8), 
+                0 0 25px rgba(147, 112, 219, 0.5),
+                0 0 40px rgba(72, 209, 204, 0.3);
             opacity: 0;
             animation: fadeInUp 1.5s ease-out 0.6s both;
             letter-spacing: 0.05em;
@@ -191,15 +599,18 @@
             justify-content: center;
             gap: 0.8rem;
             padding: 1.2rem 2.5rem;
-            background: linear-gradient(135deg, rgba(40, 40, 40, 0.8) 0%, rgba(60, 60, 60, 0.6) 50%, rgba(30, 30, 30, 0.9) 100%);
-            border: 2px solid rgba(147, 112, 219, 0.6);
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.7) 0%, rgba(60, 60, 60, 0.5) 50%, rgba(30, 30, 30, 0.8) 100%);
+            border: 2px solid rgba(147, 112, 219, 0.5);
             border-radius: 50px;
             text-decoration: none;
             color: #ffffff;
             font-weight: 500;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(15px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 3px 12px rgba(147, 112, 219, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.4), 
+                0 3px 12px rgba(147, 112, 219, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -211,8 +622,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(72, 209, 204, 0.3), transparent);
-            transition: left 0.8s ease;
+            background: linear-gradient(90deg, transparent, rgba(72, 209, 204, 0.4), transparent);
+            transition: left 0.6s ease;
         }
 
         .social-link:hover::before {
@@ -221,9 +632,13 @@
 
         .social-link:hover {
             transform: translateY(-10px) scale(1.05);
-            border-color: rgba(72, 209, 204, 0.8);
-            background: linear-gradient(135deg, rgba(50, 50, 50, 0.9) 0%, rgba(70, 70, 70, 0.7) 50%, rgba(40, 40, 40, 0.95) 100%);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 8px 25px rgba(72, 209, 204, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            border-color: rgba(72, 209, 204, 0.7);
+            background: linear-gradient(135deg, rgba(50, 50, 50, 0.8) 0%, rgba(70, 70, 70, 0.6) 50%, rgba(40, 40, 40, 0.9) 100%);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5), 
+                0 8px 25px rgba(72, 209, 204, 0.4),
+                0 0 35px rgba(147, 112, 219, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .social-link i {
@@ -252,7 +667,9 @@
             color: #ffffff;
             margin-bottom: 3rem;
             position: relative;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+            text-shadow: 
+                2px 2px 6px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(147, 112, 219, 0.4);
         }
 
         .section-title::after {
@@ -264,31 +681,55 @@
             width: 120px;
             height: 3px;
             background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.8), rgba(72, 209, 204, 0.6), transparent);
-            box-shadow: 0 2px 8px rgba(147, 112, 219, 0.4);
+            box-shadow: 0 2px 12px rgba(147, 112, 219, 0.5);
+            animation: subtleLineGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes subtleLineGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
         }
 
         .videos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            align-items: start;
         }
 
         .video-container {
-            background: linear-gradient(135deg, rgba(40, 40, 40, 0.8) 0%, rgba(60, 60, 60, 0.4) 50%, rgba(30, 30, 30, 0.9) 100%);
-            border: 2px solid rgba(147, 112, 219, 0.5);
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.7) 0%, rgba(60, 60, 60, 0.4) 50%, rgba(30, 30, 30, 0.8) 100%);
+            border: 2px solid rgba(147, 112, 219, 0.4);
             border-radius: 20px;
             padding: 1.5rem;
             backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(147, 112, 219, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4), 
+                0 5px 15px rgba(147, 112, 219, 0.25), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
+        /* 左の動画を右寄せ */
+        .video-container:first-child {
+            justify-self: end;
+        }
+
+        /* 右の動画を左寄せ */
+        .video-container:last-child {
+            justify-self: start;
+        }
+
         .video-container:hover {
             transform: translateY(-12px);
-            border-color: rgba(72, 209, 204, 0.7);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 10px 25px rgba(72, 209, 204, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(72, 209, 204, 0.6);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5), 
+                0 10px 25px rgba(72, 209, 204, 0.4),
+                0 0 40px rgba(147, 112, 219, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .video-container iframe {
@@ -348,16 +789,18 @@
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(40, 40, 40, 0.7) 0%, rgba(60, 60, 60, 0.4) 100%);
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.6) 0%, rgba(60, 60, 60, 0.3) 100%);
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(147, 112, 219, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4), 
+                0 4px 15px rgba(147, 112, 219, 0.25), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             transform-origin: center;
             aspect-ratio: 1;
         }
 
-        /* デスクトップ：回転と上下移動を維持 */
         .photo-item:nth-child(1) { transform: rotate(-28deg); }
         .photo-item:nth-child(2) { transform: rotate(25deg); }
         .photo-item:nth-child(3) { transform: rotate(-20deg); }
@@ -365,7 +808,6 @@
         .photo-item:nth-child(5) { transform: rotate(-30deg); }
         .photo-item:nth-child(6) { transform: rotate(22deg); }
         
-        /* モバイル：回転は維持、上下移動をなくす */
         @media (max-width: 768px) {
             .photo-item:nth-child(1) { transform: rotate(-28deg) translateY(0); }
             .photo-item:nth-child(2) { transform: rotate(25deg) translateY(0); }
@@ -377,7 +819,10 @@
 
         .photo-item:hover {
             transform: scale(1.1) rotate(0deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 15px 30px rgba(72, 209, 204, 0.4);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.6), 
+                0 15px 30px rgba(72, 209, 204, 0.4),
+                0 0 50px rgba(147, 112, 219, 0.3);
             z-index: 10;
         }
 
@@ -439,7 +884,10 @@
             max-width: 100%;
             max-height: 80vh;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(72, 209, 204, 0.3);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8), 
+                0 0 35px rgba(72, 209, 204, 0.35),
+                0 0 70px rgba(147, 112, 219, 0.25);
         }
 
         .lightbox-close {
@@ -471,6 +919,10 @@
                 max-width: 600px;
             }
             .videos-grid { grid-template-columns: 1fr; }
+            .video-container:first-child,
+            .video-container:last-child {
+                justify-self: stretch;
+            }
             .video-container iframe { height: 200px; }
             .video-container.vertical iframe { height: 300px; }
         }
@@ -496,6 +948,47 @@
     </style>
 </head>
 <body>
+    <!-- しとしと降る雨 -->
+    <div class="rain-container">
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+    </div>
+
+    <!-- 穏やかな水面の波紋 -->
+    <div class="ripples-container">
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+    </div>
+
+    <!-- 控えめな浮遊粒子 -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <div class="container">
         <section class="hero">
             <div class="profile-image-container">
