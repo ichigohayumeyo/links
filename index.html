@@ -357,20 +357,32 @@
             aspect-ratio: 1;
         }
 
-        .photo-item:nth-child(1) { transform: rotate(-12deg); }
-        .photo-item:nth-child(2) { transform: rotate(10deg); }
-        .photo-item:nth-child(3) { transform: rotate(-8deg); }
-        .photo-item:nth-child(4) { transform: rotate(12deg); }
-        .photo-item:nth-child(5) { transform: rotate(-10deg); }
-        .photo-item:nth-child(6) { transform: rotate(8deg); }
+        /* デスクトップ：控えめな傾き */
+        .photo-item:nth-child(1) { transform: rotate(-3deg); }
+        .photo-item:nth-child(2) { transform: rotate(2deg); }
+        .photo-item:nth-child(3) { transform: rotate(-2deg); }
+        .photo-item:nth-child(4) { transform: rotate(3deg); }
+        .photo-item:nth-child(5) { transform: rotate(-2deg); }
+        .photo-item:nth-child(6) { transform: rotate(2deg); }
         
+        /* タブレット以下：さらに控えめ */
         @media (max-width: 768px) {
-            .photo-item:nth-child(1) { transform: rotate(-5deg); }
-            .photo-item:nth-child(2) { transform: rotate(5deg); }
-            .photo-item:nth-child(3) { transform: rotate(-3deg); }
-            .photo-item:nth-child(4) { transform: rotate(6deg); }
-            .photo-item:nth-child(5) { transform: rotate(-4deg); }
-            .photo-item:nth-child(6) { transform: rotate(3deg); }
+            .photo-item:nth-child(1) { transform: rotate(-1deg); }
+            .photo-item:nth-child(2) { transform: rotate(1deg); }
+            .photo-item:nth-child(3) { transform: rotate(-1deg); }
+            .photo-item:nth-child(4) { transform: rotate(1deg); }
+            .photo-item:nth-child(5) { transform: rotate(-1deg); }
+            .photo-item:nth-child(6) { transform: rotate(1deg); }
+        }
+        
+        /* 小さいスマホ：ほぼ水平 */
+        @media (max-width: 480px) {
+            .photo-item:nth-child(1) { transform: rotate(-0.5deg); }
+            .photo-item:nth-child(2) { transform: rotate(0.5deg); }
+            .photo-item:nth-child(3) { transform: rotate(-0.5deg); }
+            .photo-item:nth-child(4) { transform: rotate(0.5deg); }
+            .photo-item:nth-child(5) { transform: rotate(-0.5deg); }
+            .photo-item:nth-child(6) { transform: rotate(0.5deg); }
         }
 
         .photo-item:hover {
