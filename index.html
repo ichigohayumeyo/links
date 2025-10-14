@@ -225,153 +225,7 @@
             }
         }
 
-        /* アジサイのあしらい */
-        .hydrangea-decoration {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.2;
-        }
 
-        .hydrangea {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-        }
-
-        .hydrangea-flower {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(147, 112, 219, 0.7);
-            box-shadow: 0 0 4px rgba(147, 112, 219, 0.4);
-        }
-
-        /* 4枚の花びらで1つの花を作る */
-        .hydrangea-flower::before,
-        .hydrangea-flower::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(147, 112, 219, 0.7);
-        }
-
-        .hydrangea-flower::before {
-            top: -6px;
-            left: 6px;
-        }
-
-        .hydrangea-flower::after {
-            top: 6px;
-            left: -6px;
-        }
-
-        /* 葉のあしらい */
-        .hydrangea-leaf {
-            position: absolute;
-            width: 30px;
-            height: 20px;
-            background: rgba(72, 209, 204, 0.15);
-            border-radius: 50% 0;
-            transform: rotate(-45deg);
-        }
-
-        /* 各アジサイの配置 */
-        .hydrangea:nth-child(1) {
-            top: 10%;
-            right: 8%;
-            transform: rotate(15deg);
-            animation: gentleSway 8s ease-in-out infinite;
-        }
-
-        .hydrangea:nth-child(1) .hydrangea-leaf:nth-of-type(1) {
-            top: 60px;
-            left: 5px;
-        }
-
-        .hydrangea:nth-child(1) .hydrangea-leaf:nth-of-type(2) {
-            top: 55px;
-            left: 40px;
-            transform: rotate(20deg);
-        }
-
-        .hydrangea:nth-child(2) {
-            top: 45%;
-            left: 5%;
-            transform: rotate(-20deg);
-            animation: gentleSway 9s ease-in-out infinite 2s;
-        }
-
-        .hydrangea:nth-child(2) .hydrangea-flower,
-        .hydrangea:nth-child(2) .hydrangea-flower::before,
-        .hydrangea:nth-child(2) .hydrangea-flower::after {
-            background: rgba(72, 209, 204, 0.7);
-            box-shadow: 0 0 4px rgba(72, 209, 204, 0.4);
-        }
-
-        .hydrangea:nth-child(2) .hydrangea-leaf:nth-of-type(1) {
-            top: 58px;
-            left: 10px;
-        }
-
-        .hydrangea:nth-child(2) .hydrangea-leaf:nth-of-type(2) {
-            top: 62px;
-            left: 45px;
-            transform: rotate(-30deg);
-        }
-
-        .hydrangea:nth-child(3) {
-            bottom: 15%;
-            right: 10%;
-            transform: rotate(25deg);
-            animation: gentleSway 10s ease-in-out infinite 4s;
-        }
-
-        .hydrangea:nth-child(3) .hydrangea-flower,
-        .hydrangea:nth-child(3) .hydrangea-flower::before,
-        .hydrangea:nth-child(3) .hydrangea-flower::after {
-            background: rgba(147, 112, 219, 0.6);
-            box-shadow: 0 0 4px rgba(147, 112, 219, 0.3);
-        }
-
-        .hydrangea:nth-child(3) .hydrangea-leaf:nth-of-type(1) {
-            top: 57px;
-            left: 8px;
-        }
-
-        .hydrangea:nth-child(3) .hydrangea-leaf:nth-of-type(2) {
-            top: 60px;
-            left: 42px;
-            transform: rotate(15deg);
-        }
-
-        @keyframes gentleSway {
-            0%, 100% { transform: rotate(0deg) translateY(0); }
-            25% { transform: rotate(2deg) translateY(-3px); }
-            50% { transform: rotate(0deg) translateY(0); }
-            75% { transform: rotate(-2deg) translateY(-2px); }
-        }
-
-        /* 花の配置（球状に見えるように） */
-        .hydrangea .hydrangea-flower:nth-child(1) { top: 15px; left: 20px; }
-        .hydrangea .hydrangea-flower:nth-child(2) { top: 10px; left: 40px; }
-        .hydrangea .hydrangea-flower:nth-child(3) { top: 30px; left: 10px; }
-        .hydrangea .hydrangea-flower:nth-child(4) { top: 30px; left: 35px; }
-        .hydrangea .hydrangea-flower:nth-child(5) { top: 25px; left: 55px; }
-        .hydrangea .hydrangea-flower:nth-child(6) { top: 45px; left: 25px; }
-        .hydrangea .hydrangea-flower:nth-child(7) { top: 50px; left: 45px; }
-
-        /* モバイルではアジサイを非表示 */
-        @media (max-width: 768px) {
-            .hydrangea-decoration {
-                display: none;
-            }
-        }
 
         /* 控えめな浮遊粒子 */
         .floating-particles {
@@ -587,7 +441,7 @@
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-bottom: 5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
             opacity: 0;
             animation: fadeInUp 1.5s ease-out 1.2s both;
@@ -651,6 +505,52 @@
             font-size: 1.1rem;
             z-index: 1;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* サブアカウント誘導 */
+        .sub-accounts {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 1.5rem 1rem;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 1.5s both;
+        }
+
+        .sub-account-link {
+            display: inline-block;
+            margin: 0.4rem 0;
+            color: #999999;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.3rem 0.5rem;
+        }
+
+        .sub-account-link:hover {
+            color: #cccccc;
+            transform: translateX(5px);
+        }
+
+        .sub-account-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(147, 112, 219, 0.5), rgba(72, 209, 204, 0.5));
+            transition: width 0.3s ease;
+        }
+
+        .sub-account-link:hover::after {
+            width: 100%;
+        }
+
+        .sub-account-link i {
+            font-size: 0.75rem;
+            margin-left: 0.3rem;
+            opacity: 0.7;
         }
 
         .videos-section {
@@ -913,6 +813,12 @@
             .hero h1 { font-size: 2.5rem; }
             .social-links { flex-direction: column; align-items: center; gap: 1rem; }
             .social-link { width: 85%; max-width: 320px; }
+            .sub-accounts { margin-bottom: 3rem; }
+            .sub-account-link { 
+                display: block;
+                margin: 0.2rem auto;
+                max-width: 320px;
+            }
             .gallery-grid { 
                 grid-template-columns: repeat(2, 1fr); 
                 gap: 1rem;
@@ -1018,6 +924,17 @@
             <a href="https://reality.app/profile/57e7cb20?adj_t=8ogcewh_z9yhix5" class="social-link" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-vr-cardboard"></i>
                 <span>REALITY</span>
+            </a>
+        </section>
+
+        <!-- サブアカウント誘導 -->
+        <section class="sub-accounts">
+            <a href="https://twitter.com/tameikitonamida" class="sub-account-link" target="_blank" rel="noopener noreferrer">
+                大したことは言っていない鍵垢はこちら<i class="fas fa-chevron-right"></i>
+            </a>
+            <br>
+            <a href="https://twitter.com/atarayo_ki" class="sub-account-link" target="_blank" rel="noopener noreferrer">
+                ちょっと過激なやつはこちら<i class="fas fa-chevron-right"></i>
             </a>
         </section>
 
